@@ -95,7 +95,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-DATABSE_URL = config("DATABSE_URL", cast=str)
+DATABSE_URL = config("DATABSE_URL", default=None)
 CONN_MAX_AGE = config("CONN_MAX_AGE",default=30)
 
 if DATABSE_URL is not None:
