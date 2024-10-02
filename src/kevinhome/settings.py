@@ -95,6 +95,19 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+DATABSE_URL = config("DATABSE_URL", cast=str)
+CONN_MAX_AGE = config("CONN_MAX_AGE",cast=int,default=30)
+
+if DATABSE_URL is not None:
+    import dj_database_url
+    DATABASES = {
+    'default': dj_database_url.config(
+        default=DATABSE_URL,
+        conn_max_age=30,
+        conn_health_checks=True,
+    )
+}
+
 
 
 # Password validation
