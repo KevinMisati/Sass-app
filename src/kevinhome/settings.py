@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'visits.apps.VisitsConfig',
     'commando.apps.CommandoConfig',
     'profiles.apps.ProfilesConfig',
+    'subscriptions.apps.SubscriptionsConfig',
 
     "allauth_ui",
     "allauth",

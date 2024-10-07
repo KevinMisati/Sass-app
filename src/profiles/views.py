@@ -19,3 +19,21 @@ def profile_view(request,username=None,*args,**kwargs):
     #profile_user_object = User.objects.get(username=username)
     profile_user_object = get_object_or_404(User,username=username)
     return HttpResponse(f"Hello there {username} - {profile_user_object.id} - {user.id}")
+
+@login_required
+def profile_detail_view(request,username=None,*args,**kwargs):
+    user = request.user
+    print(
+        user.has_perm("subscriptions.basic"),
+        user.has_perm("subscriptions.pro"),
+        user.has_perm("subscriptions.advanced"),    
+    )
+    profile_user_object = get_object_or_404(User,username=username)
+    print(profile_user_object)
+    is_me = profile_user_object == user
+    context = {
+        'object':profile_user_object,
+        'instance': profile_user_object,
+        'owner':is_me,
+    }
+    return render(request,'profiles/detail.html',context)
